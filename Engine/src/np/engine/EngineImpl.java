@@ -21,6 +21,9 @@ import org.jsfml.window.ContextActivationException;
 import org.jsfml.window.VideoMode;
 import org.jsfml.window.Window;
 import org.jsfml.window.event.Event;
+
+import np.engine.maths.V2F;
+
 import org.jsfml.window.Keyboard;
 import org.jsfml.window.Mouse;
 
@@ -33,6 +36,8 @@ public class EngineImpl implements Engine {
 	Clock frameClock;
 	
 	float deltaTime = 1.0f;
+	
+	private V2F cameraPosition;
 	
 	private HashMap<String, Texture> spriteMap = new HashMap<>();
 	private HashMap<String, SubSpriteMask> subSpriteMap = new HashMap<>();
@@ -284,6 +289,26 @@ public class EngineImpl implements Engine {
 	@Override
 	public void SetActiveFont(String name) {
 		currentlyActiveFont = fontMap.get(name);
+	}
+
+	@Override
+	public V2F WorldToScreen(V2F point) {
+		return point.Sub(cameraPosition);
+	}
+
+	@Override
+	public V2F ScreenToWorld(V2F point) {
+		return point.Add(cameraPosition);
+	}
+
+	@Override
+	public void SetCameraPosition(V2F pos) {
+		cameraPosition = pos;
+	}
+
+	@Override
+	public void TranslateCamera(V2F move) {
+		cameraPosition.Add(move);
 	}
 	
 	

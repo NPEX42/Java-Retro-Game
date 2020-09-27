@@ -1,10 +1,12 @@
 package np.engine;
+
+import np.engine.maths.V2F;
+
 @SuppressWarnings("unused")
 public abstract class Entity {
 	protected Engine engine;
 	protected boolean isStatic, isActive, isDisplayed;
-	public int x;
-	public int y;
+	protected V2F position;
 	public int width;
 	public int height;
 	public long ID;
@@ -14,8 +16,8 @@ public abstract class Entity {
 		super();
 		this.engine = engine;
 		this.isStatic = isStatic;
-		this.x = x;
-		this.y = y;
+		this.position.x = x;
+		this.position.y = y;
 		this.width = width;
 		this.height = height;
 		ID = iD;
@@ -25,20 +27,20 @@ public abstract class Entity {
 	public abstract void Update();
 	
 	public void SetPosition(int x, int y) {
-		this.x = x;
-		this.y = y;
+		this.position.x = x;
+		this.position.y = y;
 	}
 	
 	public void Translate(int dx, int dy) {
-		this.x += dx;
-		this.y += dy;
+		this.position.x += dx;
+		this.position.y += dy;
 	}
 	
 	public String toString() {
 		return 	  "Physics Entity {\n"
 				+ "\tID: "+ID+"\n"
-				+ "\tX: "+x+"\n"
-				+ "\tY: "+y+"\n"
+				+ "\tX: "+position.x+"\n"
+				+ "\tY: "+position.y+"\n"
 				+ "\tW: "+width+"\n"
 				+ "\tH: "+height+"\n"
 				+ "}";

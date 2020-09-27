@@ -2,6 +2,8 @@ package np.engine;
 
 import java.awt.Color;
 
+import np.engine.maths.V2F;
+
 public interface Engine {
 	public boolean ConstructWindow(int _width, int _height, String _title);
 	public void Start(int targetFrameRate);
@@ -40,6 +42,13 @@ public interface Engine {
 	public float GetDeltaTimeSeconds();
 	
 	public void AddEntity(Entity entity); 
+	
+	
+	public V2F WorldToScreen(V2F point);
+	public V2F ScreenToWorld(V2F point);
+	
+	public void SetCameraPosition(V2F pos);
+	public void TranslateCamera(V2F move);
 	
 	
 	

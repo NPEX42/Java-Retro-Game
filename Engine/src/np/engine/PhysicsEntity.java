@@ -1,6 +1,11 @@
 package np.engine;
 
+
 public abstract class PhysicsEntity extends Entity {
+	
+	private static float gravityScale = 1.0f;
+	private float velocityX, velocityY;
+	
 	private boolean gravityAffected, isSolid, isStatic;
 	public PhysicsEntity(Engine engine) {
 		super(engine);
@@ -8,14 +13,14 @@ public abstract class PhysicsEntity extends Entity {
 
 	@Override
 	public void Update() {
-		
+		if(gravityAffected) velocityY += PhysicsEngine.getGravity();
 	}
 	
 	public String toString() {
 		return 	  "Physics Entity {\n"
 				+ "\tID: "+ID+"\n"
-				+ "\tX: "+x+"\n"
-				+ "\tY: "+y+"\n"
+				+ "\tX: "+position.x+"\n"
+				+ "\tY: "+position.y+"\n"
 				+ "\tW: "+width+"\n"
 				+ "\tH: "+height+"\n"
 				+ "\tGravityAffected: "+gravityAffected+"\n"
@@ -24,6 +29,13 @@ public abstract class PhysicsEntity extends Entity {
 				+ "}";
 		
 	}
+	
+	public void AddForce(float VX, float VY) {
+		velocityX += VX;
+		velocityY += VY;
+	}
+	
+	
 	
 	
 }
