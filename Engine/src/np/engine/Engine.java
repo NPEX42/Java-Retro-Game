@@ -2,8 +2,6 @@ package np.engine;
 
 import java.awt.Color;
 
-import org.jsfml.window.Keyboard.Key;
-
 public interface Engine {
 	public boolean ConstructWindow(int _width, int _height, String _title);
 	public void Start(int targetFrameRate);
@@ -11,13 +9,23 @@ public interface Engine {
 	
 	public void ClearBackground(Color color);
 	
-	public void DrawRect(int x, int y, int w, int h);
-	public void DrawRect(int x, int y, int w, int h, Color color);
+	public void DrawFilledRect(int x, int y, int w, int h);
+	public void DrawFilledRect(int x, int y, int w, int h, Color color);
+	public void DrawRect(int x, int y, int w, int h, int thickness);
+	public void DrawRect(int x, int y, int w, int h, int thickness, Color color);
+	public void DrawString(String text, int x, int y, int charSize, Color color);
+	public void LoadFont(String path, String name);
+	public void SetActiveFont(String name);
 	
 	public int ScreenWidth();
 	public int ScreenHeight();
 	
 	public KeyState GetKeyState(Key key);
+	public KeyState GetMouseState(Button button);
+	public int GetMousePosX();
+	public int GetMousePosY();
+	public int GetScrollDeltaX();
+	public int GetScrollDeltaY();
 	
 	public boolean LoadSprite(String path, String name);
 	public void DrawSprite(String name, int x, int y, int w, int h);
@@ -28,6 +36,10 @@ public interface Engine {
 	public boolean LoadAudio(String path, String name);
 	
 	public String GetAppData();
+	
+	public float GetDeltaTimeSeconds();
+	
+	public void AddEntity(Entity entity); 
 	
 	
 	
