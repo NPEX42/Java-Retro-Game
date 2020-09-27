@@ -54,6 +54,12 @@ public interface Engine {
 	public void SetCameraPosition(V2F pos  );
 	public void TranslateCamera  (V2F move );
 	
+	public void LogInfo     (String... msgs                 );
+	public void LogWarn     (String... msgs                 );
+	public void LogDebug    (String... msgs                 );
+	public void LogFatal    (int exitCode, String... msgs   );
+	public void LogFormatted(String format, Object... items );
 	
+	public void EnableDebug();
 	
 }

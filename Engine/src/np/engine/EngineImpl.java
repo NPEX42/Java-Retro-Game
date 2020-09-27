@@ -47,6 +47,7 @@ public class EngineImpl implements Engine {
 	private Font currentlyActiveFont = null;
 	
 	private boolean[] keyStates = new boolean[65536];
+	private boolean debugMode = false;
 	
 	private int scrollDeltaX, scrollDeltaY;
 	
@@ -309,6 +310,54 @@ public class EngineImpl implements Engine {
 	@Override
 	public void TranslateCamera(V2F move) {
 		cameraPosition.Add(move);
+	}
+
+	@Override
+	public void LogInfo(String... msgs) {
+		String str = "[ENGINE/Info] ";
+		for (String msg : msgs) {
+			str += msg;
+		}
+		System.out.println(str);
+	}
+
+	@Override
+	public void LogWarn(String... msgs) {
+		String str = "[ENGINE/Warn] ";
+		for (String msg : msgs) {
+			str += msg;
+		}
+		System.err.println(str);
+	}
+
+	@Override
+	public void LogDebug(String... msgs) {
+		if(!debugMode) return;
+		String str = "[ENGINE/Debug] ";
+		for (String msg : msgs) {
+			str += msg;
+		}
+		System.err.println(str);
+	}
+
+	@Override
+	public void LogFatal(int exitCode, String... msgs) {
+		String str = "[ENGINE/Fatal] ";
+		for (String msg : msgs) {
+			str += msg;
+		}
+		System.err.println(str);
+		window.close();
+	}
+
+	@Override
+	public void LogFormatted(String format, Object... items) {
+		System.out.printf(format, items);
+	}
+
+	@Override
+	public void EnableDebug() {
+		debugMode = true;
 	}
 	
 	
