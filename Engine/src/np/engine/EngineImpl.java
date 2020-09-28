@@ -148,6 +148,7 @@ public class EngineImpl implements Engine {
 		try {
 			texture.loadFromFile(Paths.get(path));
 			spriteMap.put(name, texture);
+			LogDebug("Loaded Sprite '",path,"' As '",name,"'");
 		} catch (IOException e) {
 			System.out.println("Unable To load Sprite '"+path+"'");;
 			return false;
@@ -161,6 +162,7 @@ public class EngineImpl implements Engine {
 		if(spriteMap.containsKey(name)) {
 			RectangleShape rect = new RectangleShape();
 			rect.setPosition(x, y);
+			rect.setOrigin(w / 2, h / 2);
 			rect.setSize(new Vector2f((float) w , (float)h));
 			rect.setTexture(spriteMap.get(name));
 			window.draw(rect);
@@ -363,6 +365,16 @@ public class EngineImpl implements Engine {
 	@Override
 	public void DrawSprite(String name, float x, float y, int w, int h) {
 		DrawSprite(name, (int)x, (int)y, w, h);
+	}
+
+	@Override
+	public V2F getCameraPosition() {
+		return cameraPosition;
+	}
+
+	@Override
+	public V2F GetMousePos() {
+		return new V2F(GetMousePosX(), GetMousePosY());
 	}
 	
 	

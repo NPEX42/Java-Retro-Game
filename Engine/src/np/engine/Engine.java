@@ -63,5 +63,9 @@ public interface Engine {
 	public void EnableDebug();
 
 	public void DrawSprite(String name, float x, float y, int width, int height);
+
+	public V2F getCameraPosition();
+
+	public V2F GetMousePos();
 	
 }
