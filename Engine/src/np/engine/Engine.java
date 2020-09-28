@@ -6,31 +6,35 @@ import np.engine.maths.V2F;
 
 public interface Engine {
 	public boolean ConstructWindow(int _width, int _height, String _title);
+	
 	public void Start(int targetFrameRate);
-	public void Start();
+	public void Start(                   );
 	
 	public void ClearBackground(Color color);
 	
-	public void DrawFilledRect(int x, int y, int w, int h);
-	public void DrawFilledRect(int x, int y, int w, int h, Color color);
-	public void DrawRect(int x, int y, int w, int h, int thickness);
-	public void DrawRect(int x, int y, int w, int h, int thickness, Color color);
-	public void DrawString(String text, int x, int y, int charSize, Color color);
-	public void LoadFont(String path, String name);
-	public void SetActiveFont(String name);
+	public void DrawFilledRect(int x, int y, int w, int h                             );
+	public void DrawFilledRect(int x, int y, int w, int h, Color color                );
 	
-	public int ScreenWidth();
+	@Deprecated public void DrawRect      (int x, int y, int w, int h, int thickness              );
+	@Deprecated public void DrawRect      (int x, int y, int w, int h, int thickness, Color color );
+	
+	public void DrawString    (String text, int x, int y, int charSize, Color color );
+	public void LoadFont      (String path, String name                             );
+	public void SetActiveFont (String name                                          );
+	
+	public int ScreenWidth ();
 	public int ScreenHeight();
 	
-	public KeyState GetKeyState(Key key);
-	public KeyState GetMouseState(Button button);
-	public int GetMousePosX();
-	public int GetMousePosY();
+	public KeyState GetKeyState  (Key key       );
+	public KeyState GetMouseState(Button button );
+	
+	public int GetMousePosX   ();
+	public int GetMousePosY   ();
 	public int GetScrollDeltaX();
 	public int GetScrollDeltaY();
 	
 	public boolean LoadSprite(String path, String name);
-	public void DrawSprite(String name, int x, int y, int w, int h);
+	public void    DrawSprite(String name, int x, int y, int w, int h);
 	
 	public void CreateSubSprite(String source, int x, int y, int w, int h, String name);
 	public void DrawSubSprite(String name, int x, int y, int w, int h);
@@ -47,9 +51,21 @@ public interface Engine {
 	public V2F WorldToScreen(V2F point);
 	public V2F ScreenToWorld(V2F point);
 	
-	public void SetCameraPosition(V2F pos);
-	public void TranslateCamera(V2F move);
+	public void SetCameraPosition(V2F pos  );
+	public void TranslateCamera  (V2F move );
 	
+	public void LogInfo     (String... msgs                 );
+	public void LogWarn     (String... msgs                 );
+	public void LogDebug    (String... msgs                 );
+	public void LogFatal    (int exitCode, String... msgs   );
+	public void LogFormatted(String format, Object... items );
 	
+	public void EnableDebug();
+
+	public void DrawSprite(String name, float x, float y, int width, int height);
+
+	public V2F getCameraPosition();
+
+	public V2F GetMousePos();
 	
 }

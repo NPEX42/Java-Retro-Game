@@ -37,7 +37,7 @@ public class EngineImpl implements Engine {
 	
 	float deltaTime = 1.0f;
 	
-	private V2F cameraPosition;
+	private V2F cameraPosition = new V2F(0, 0);
 	
 	private HashMap<String, Texture> spriteMap = new HashMap<>();
 	private HashMap<String, SubSpriteMask> subSpriteMap = new HashMap<>();
@@ -47,6 +47,7 @@ public class EngineImpl implements Engine {
 	private Font currentlyActiveFont = null;
 	
 	private boolean[] keyStates = new boolean[65536];
+	private boolean debugMode = false;
 	
 	private int scrollDeltaX, scrollDeltaY;
 	
@@ -147,6 +148,7 @@ public class EngineImpl implements Engine {
 		try {
 			texture.loadFromFile(Paths.get(path));
 			spriteMap.put(name, texture);
+			LogDebug("Loaded Sprite '",path,"' As '",name,"'");
 		} catch (IOException e) {
 			System.out.println("Unable To load Sprite '"+path+"'");;
 			return false;
@@ -160,6 +162,7 @@ public class EngineImpl implements Engine {
 		if(spriteMap.containsKey(name)) {
 			RectangleShape rect = new RectangleShape();
 			rect.setPosition(x, y);
+			rect.setOrigin(w / 2, h / 2);
 			rect.setSize(new Vector2f((float) w , (float)h));
 			rect.setTexture(spriteMap.get(name));
 			window.draw(rect);
@@ -309,6 +312,69 @@ public class EngineImpl implements Engine {
 	@Override
 	public void TranslateCamera(V2F move) {
 		cameraPosition.Add(move);
+	}
+
+	@Override
+	public void LogInfo(String... msgs) {
+		String str = "[ENGINE/Info] ";
+		for (String msg : msgs) {
+			str += msg;
+		}
+		System.out.println(str);
+	}
+
+	@Override
+	public void LogWarn(String... msgs) {
+		String str = "[ENGINE/Warn] ";
+		for (String msg : msgs) {
+			str += msg;
+		}
+		System.err.println(str);
+	}
+
+	@Override
+	public void LogDebug(String... msgs) {
+		if(!debugMode) return;
+		String str = "[ENGINE/Debug] ";
+		for (String msg : msgs) {
+			str += msg;
+		}
+		System.err.println(str);
+	}
+
+	@Override
+	public void LogFatal(int exitCode, String... msgs) {
+		String str = "[ENGINE/Fatal] ";
+		for (String msg : msgs) {
+			str += msg;
+		}
+		System.err.println(str);
+		window.close();
+	}
+
+	@Override
+	public void LogFormatted(String format, Object... items) {
+		System.out.printf(format, items);
+	}
+
+	@Override
+	public void EnableDebug() {
+		debugMode = true;
+	}
+
+	@Override
+	public void DrawSprite(String name, float x, float y, int w, int h) {
+		DrawSprite(name, (int)x, (int)y, w, h);
+	}
+
+	@Override
+	public V2F getCameraPosition() {
+		return cameraPosition;
+	}
+
+	@Override
+	public V2F GetMousePos() {
+		return new V2F(GetMousePosX(), GetMousePosY());
 	}
 	
 	
