@@ -61,5 +61,7 @@ public interface Engine {
 	public void LogFormatted(String format, Object... items );
 	
 	public void EnableDebug();
+
+	public void DrawSprite(String name, float x, float y, int width, int height);
 	
 }

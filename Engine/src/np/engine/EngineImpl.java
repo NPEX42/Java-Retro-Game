@@ -37,7 +37,7 @@ public class EngineImpl implements Engine {
 	
 	float deltaTime = 1.0f;
 	
-	private V2F cameraPosition;
+	private V2F cameraPosition = new V2F(0, 0);
 	
 	private HashMap<String, Texture> spriteMap = new HashMap<>();
 	private HashMap<String, SubSpriteMask> subSpriteMap = new HashMap<>();
@@ -358,6 +358,11 @@ public class EngineImpl implements Engine {
 	@Override
 	public void EnableDebug() {
 		debugMode = true;
+	}
+
+	@Override
+	public void DrawSprite(String name, float x, float y, int w, int h) {
+		DrawSprite(name, (int)x, (int)y, w, h);
 	}
 	
 	

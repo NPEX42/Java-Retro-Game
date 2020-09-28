@@ -14,6 +14,7 @@ public abstract class Entity {
 	
 	public Entity(Engine engine, boolean isStatic, int x, int y, int width, int height, long iD) {
 		super();
+		position = new V2F(0, 0);
 		this.engine = engine;
 		this.isStatic = isStatic;
 		this.position.x = x;
@@ -82,6 +83,12 @@ public abstract class Entity {
 	public String GetHexID() {
 		return String.format("%016x",ID);
 	}
+
+	public V2F getPosition() {
+		return position;
+	}
+	
+	
 	
 	
 	
