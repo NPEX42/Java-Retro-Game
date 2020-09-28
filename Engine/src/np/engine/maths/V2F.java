@@ -47,4 +47,8 @@ public class V2F {
 		float mulY = y * rhs.x;
 		return mulX - mulY;
 	}
+	
+	public String toString() {
+		return "[" + x + ", " + y + "]";
+	}
 }
