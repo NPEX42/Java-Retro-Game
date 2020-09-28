@@ -12,6 +12,8 @@ public abstract class Entity {
 	public long ID;
 	public Entity(Engine engine) { this.engine = engine; }
 	
+	private static int nextID = 0;
+	
 	public Entity(Engine engine, boolean isStatic, int x, int y, int width, int height, long iD) {
 		super();
 		position = new V2F(0, 0);
@@ -86,6 +88,10 @@ public abstract class Entity {
 
 	public V2F getPosition() {
 		return position;
+	}
+	
+	public static int GetNextID() {
+		return nextID++;
 	}
 	
 	

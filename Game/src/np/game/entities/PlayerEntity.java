@@ -12,7 +12,7 @@ import np.engine.maths.V2F;
 public class PlayerEntity extends Entity {
 	private boolean flip = false;
 	public PlayerEntity(Engine engine, int X, int Y, int W, int H) {
-		super(engine, false, X, Y, W, H, GenerateRandomID());
+		super(engine, false, X, Y, W, H, GetNextID());
 		isDisplayed = true;
 		isActive = true;
 	}

@@ -186,7 +186,7 @@ public class EngineImpl implements Engine {
 		RectangleShape shape = new RectangleShape();
 		shape.setPosition(x, y);
 		shape.setSize(new Vector2f((float) w , (float)h));
-		shape.setTexture(spriteMap.get(source));
+		shape.setTexture(source);
 		shape.setTextureRect(rect.getTextureRect());
 		window.draw(shape);
 		} else {
