@@ -5,6 +5,7 @@ import java.awt.Color;
 
 import np.engine.*;
 import np.engine.maths.V2F;
+import np.game.entities.ConfigFile;
 import np.game.entities.PlayerEntity;
 
 import static np.engine.KeyState.*;
@@ -12,6 +13,8 @@ import static np.engine.KeyState.*;
 public class Game {
 	int x, y;
 	Engine engine = new EngineImpl(this::OnUpdate);
+	
+	ConfigFile config = new ConfigFile();
 	
 	PlayerEntity player;
 	public void Start() {
@@ -36,6 +39,11 @@ public class Game {
 			engine.SetActiveFont("8bit");
 			
 			engine.LogInfo("Starting Game...");
+			
+			config.SetString("TEST", "This Is A Test");
+			
+			System.out.println(config.GetString("TEST"));
+			
 			
 			engine.Start(144);
 		}
