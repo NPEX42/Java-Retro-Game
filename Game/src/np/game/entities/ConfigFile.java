@@ -2,6 +2,7 @@ package np.game.entities;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.IOException;
 import java.util.HashMap;
 
 public class ConfigFile {
@@ -29,6 +30,17 @@ public class ConfigFile {
 	
 	public boolean Save(String filePath) {
 		BufferedWriter writer = IO.OpenBufferedWriter(filePath);
+		try {
+			for(String key : config.keySet()) {
+				writer.write(key+":"+config.get(key));
+				writer.newLine();
+			}
+			writer.flush();
+			writer.close();
+		} catch(IOException ioex) {
+			return false;
+		}
+		return true;
 	}
  	
 	@Override
