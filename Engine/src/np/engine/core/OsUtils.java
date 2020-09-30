@@ -1,4 +1,4 @@
-package np.engine;
+package np.engine.core;
 public final class OsUtils
 {
    private static String OS = null;

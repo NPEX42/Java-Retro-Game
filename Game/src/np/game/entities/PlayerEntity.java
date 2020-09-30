@@ -4,9 +4,9 @@ import static np.engine.KeyState.KEY_UP;
 
 import java.awt.Color;
 
-import np.engine.Engine;
-import np.engine.Entity;
 import np.engine.Key;
+import np.engine.core.Engine;
+import np.engine.core.Entity;
 import np.engine.maths.V2F;
 
 public class PlayerEntity extends Entity {

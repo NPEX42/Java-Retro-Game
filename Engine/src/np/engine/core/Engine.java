@@ -1,7 +1,12 @@
-package np.engine;
+package np.engine.core;
 
 import java.awt.Color;
 
+import org.jsfml.graphics.RenderWindow;
+
+import np.engine.Button;
+import np.engine.Key;
+import np.engine.KeyState;
 import np.engine.maths.V2F;
 
 public interface Engine {
@@ -10,17 +15,19 @@ public interface Engine {
 	public void Start(int targetFrameRate);
 	public void Start(                   );
 	
+	//public RenderWindow GetRenderWindow();
+	
 	public void ClearBackground(Color color);
 	
-	public void DrawFilledRect(int x, int y, int w, int h                             );
-	public void DrawFilledRect(int x, int y, int w, int h, Color color                );
+	@Deprecated(forRemoval = true) public void DrawFilledRect(int x, int y, int w, int h                             );
+	@Deprecated(forRemoval = true) public void DrawFilledRect(int x, int y, int w, int h, Color color                );
 	
 	@Deprecated public void DrawRect      (int x, int y, int w, int h, int thickness              );
 	@Deprecated public void DrawRect      (int x, int y, int w, int h, int thickness, Color color );
 	
-	public void DrawString    (String text, int x, int y, int charSize, Color color );
-	public void LoadFont      (String path, String name                             );
-	public void SetActiveFont (String name                                          );
+	@Deprecated(forRemoval = true) public void DrawString    (String text, int x, int y, int charSize, Color color );
+	@Deprecated(forRemoval = true) public void LoadFont      (String path, String name                             );
+	@Deprecated(forRemoval = true) public void SetActiveFont (String name                                          );
 	
 	public int ScreenWidth ();
 	public int ScreenHeight();
@@ -33,8 +40,8 @@ public interface Engine {
 	public int GetScrollDeltaX();
 	public int GetScrollDeltaY();
 	
-	public boolean LoadSprite(String path, String name);
-	public void    DrawSprite(String name, int x, int y, int w, int h);
+	@Deprecated(forRemoval = true) public boolean LoadSprite(String path, String name);
+	@Deprecated(forRemoval = true) public void    DrawSprite(String name, int x, int y, int w, int h);
 	
 	public void CreateSubSprite(String source, int x, int y, int w, int h, String name);
 	public void DrawSubSprite(String name, int x, int y, int w, int h);
@@ -62,7 +69,7 @@ public interface Engine {
 	
 	public void EnableDebug();
 
-	public void DrawSprite(String name, float x, float y, int width, int height);
+	@Deprecated(forRemoval = true) public void DrawSprite(String name, float x, float y, int width, int height);
 
 	public V2F getCameraPosition();
 

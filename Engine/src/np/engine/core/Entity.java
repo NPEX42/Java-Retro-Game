@@ -1,4 +1,4 @@
-package np.engine;
+package np.engine.core;
 
 import np.engine.maths.V2F;
 

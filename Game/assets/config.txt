@@ -1,1 +1,3 @@
 TEST:This Is A Test
+PlayerY:255
+PlayerX:371

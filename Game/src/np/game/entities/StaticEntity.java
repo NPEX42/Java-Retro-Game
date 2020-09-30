@@ -1,7 +1,7 @@
 package np.game.entities;
 
-import np.engine.Engine;
-import np.engine.Entity;
+import np.engine.core.Engine;
+import np.engine.core.Entity;
 
 public class StaticEntity extends Entity {
 

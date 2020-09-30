@@ -1,4 +1,4 @@
-package np.engine;
+package np.engine.core;
 
 import java.awt.Color;
 import java.io.IOException;
@@ -22,6 +22,11 @@ import org.jsfml.window.VideoMode;
 import org.jsfml.window.Window;
 import org.jsfml.window.event.Event;
 
+import np.engine.Button;
+import np.engine.Key;
+import np.engine.KeyState;
+import np.engine.SubSpriteMask;
+import np.engine.gfx.ColorUtils;
 import np.engine.maths.V2F;
 
 import org.jsfml.window.Keyboard;
@@ -31,7 +36,7 @@ import static np.engine.KeyState.*;
 
 
 public class EngineImpl implements Engine {
-	RenderWindow window;
+	public RenderWindow window;
 	UpdateCallback OnUpdate;
 	Clock frameClock;
 	
@@ -104,15 +109,9 @@ public class EngineImpl implements Engine {
 
 	@Override
 	public void ClearBackground(Color color) {
-		window.clear(AWTColorToJSFMLColor(color));
+		window.clear(ColorUtils.AWTColorToJSFMLColor(color));
 	}
 	
-	private org.jsfml.graphics.Color AWTColorToJSFMLColor(Color color) {
-		return new org.jsfml.graphics.Color(
-				color.getRed(), color.getGreen(), color.getBlue(), color.getAlpha()
-				);
-	}
-
 	@Override
 	public void DrawFilledRect(int x, int y, int w, int h) {
 		DrawFilledRect(x, y, w, h, Color.white);
@@ -123,7 +122,7 @@ public class EngineImpl implements Engine {
 		RectangleShape rect = new RectangleShape();
 		rect.setPosition(x, y);
 		rect.setSize(new Vector2f((float) w , (float)h));
-		rect.setFillColor(AWTColorToJSFMLColor(color));
+		rect.setFillColor(ColorUtils.AWTColorToJSFMLColor(color));
 		window.draw(rect);
 	}
 
@@ -272,7 +271,7 @@ public class EngineImpl implements Engine {
 			txt.setCharacterSize(characterSize);
 			txt.setPosition(x, y);
 			txt.setString(text);
-			txt.setColor(AWTColorToJSFMLColor(color));
+			txt.setColor(ColorUtils.AWTColorToJSFMLColor(color));
 			window.draw(txt);
 		}
 	}

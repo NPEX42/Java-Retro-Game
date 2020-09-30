@@ -1,5 +1,7 @@
 package np.engine;
 
+import np.engine.core.Engine;
+import np.engine.core.Entity;
 
 public abstract class PhysicsEntity extends Entity {
 	

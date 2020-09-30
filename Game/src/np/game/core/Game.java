@@ -4,6 +4,10 @@ import java.awt.Color;
 
 
 import np.engine.*;
+import np.engine.core.Engine;
+import np.engine.core.EngineImpl;
+import np.engine.gfx.GraphicsEngine;
+import np.engine.gfx.GraphicsEngineImpl;
 import np.engine.maths.V2F;
 import np.game.entities.ConfigFile;
 import np.game.entities.PlayerEntity;
@@ -13,30 +17,30 @@ import static np.engine.KeyState.*;
 public class Game {
 	int x, y;
 	Engine engine = new EngineImpl(this::OnUpdate);
+	GraphicsEngine gfx;
 	
-	ConfigFile config = new ConfigFile();
+	
+	ConfigFile config = new ConfigFile("assets/config.txt");
 	
 	PlayerEntity player;
 	public void Start() {
 		if(engine.ConstructWindow(720, 480, "The Adventures Of Kahn")) {
+			
+			gfx = new GraphicsEngineImpl(((EngineImpl)engine).window);
+			
 			engine.EnableDebug();
 			engine.LogDebug("Loading Sprites...");
-			if(!engine.LoadSprite("assets/player_right.png", "player::right")) return;
-			if(!engine.LoadSprite("assets/player_left.png", "player::left")) return;
-			if(!engine.LoadSprite("assets/c64-Tiles.png", "c64::tiles")) return;
-			
-			engine.CreateSubSprite("c64::tiles", 0 , 0, 16, 16, "Tiles::Tree");
-			engine.CreateSubSprite("c64::tiles", 16, 0, 16, 16, "Tiles::Chest");
-			engine.CreateSubSprite("c64::tiles", 48, 0, 16, 16, "Tiles::Coin");
-			engine.CreateSubSprite("c64::tiles", 64, 0, 16, 16, "Tiles::Fire");
+			if(!gfx.LoadSprite("assets/player_right.png", "player::right")) return;
+			if(!gfx.LoadSprite("assets/player_left.png", "player::left")) return;
+			if(!gfx.LoadSprite("assets/c64-Tiles.png", "c64::tiles")) return;
 			
 			System.out.println(engine.GetAppData()+"TheAdventuresOfKahn");
 			
-			player = new PlayerEntity(engine, 100, 100, 100, 100);
+			player = new PlayerEntity(engine, config.GetInt("PlayerX"), config.GetInt("PlayerY"), 100, 100);
 			engine.AddEntity(player);
 			engine.LogDebug("Loading Fonts...");
-			engine.LoadFont("assets/DTM.woff", "8bit");
-			engine.SetActiveFont("8bit");
+			gfx.LoadFont("assets/DTM.woff", "8bit");
+			gfx.SetActiveFont("8bit");
 			
 			engine.LogInfo("Starting Game...");
 			
@@ -44,20 +48,22 @@ public class Game {
 			
 			System.out.println(config.GetString("TEST"));
 			
+			System.out.println(gfx);
 			
 			engine.Start(144);
 			
+		
+			config.SetInt("PlayerX",(int) player.getPosition().x);
+			config.SetInt("PlayerY",(int) player.getPosition().y);
 			config.Save("assets/config.txt");
 		}
 	}
 	
 	public void OnUpdate() {
 		engine.ClearBackground(Color.GREEN);
-		engine.DrawString("Player Pos: "+player.getPosition(), 0, 0, 16, Color.BLACK);
-		engine.DrawString("Camera Position: "+engine.getCameraPosition(), 0, 16, 16, Color.BLACK);
-		engine.DrawString("Mouse Position: "+engine.GetMousePos(),0,32,16, Color.black);
-		
-		engine.DrawSubSprite("Tiles::Tree", 0, 0, 64, 64);
+		gfx.DrawString("Player Pos: "+player.getPosition(), 0, 0, 16, Color.BLACK);
+		gfx.DrawString("Camera Position: "+engine.getCameraPosition(), 0, 16, 16, Color.BLACK);
+		gfx.DrawString("Mouse Position: "+engine.GetMousePos(),0,32,16, Color.black);
 		//engine.SetCameraPosition(player.getPosition().Sub(new V2F(100, 100)));
 	}
 
