@@ -46,6 +46,8 @@ public class Game {
 			
 			
 			engine.Start(144);
+			
+			config.Save("assets/config.txt");
 		}
 	}
 	
