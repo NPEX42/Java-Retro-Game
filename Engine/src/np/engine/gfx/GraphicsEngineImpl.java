@@ -25,6 +25,7 @@ public class GraphicsEngineImpl implements GraphicsEngine {
 	private HashMap<String, Font> fontMap = new HashMap<>();
 	private HashMap<String, Texture> spriteMap = new HashMap<>();
 	private HashMap<String, SubSpriteMask> subSpriteMap = new HashMap<>();
+	  
 	@Override
 	public void DrawString(String text, int x, int y, int charSize, Color color) {
 		if(currentFont == null) {
