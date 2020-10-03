@@ -1,0 +1,4 @@
+<?eclipse.ant.import?>
+    <target name="build-jar"> 
+    	<jar destfile="build/Engine.jar" basedir="bin"/>
+   	</target>
