@@ -4,15 +4,17 @@ import static np.engine.KeyState.KEY_UP;
 
 import java.awt.Color;
 
-import np.engine.Engine;
-import np.engine.Entity;
 import np.engine.Key;
+import np.engine.core.Engine;
+import np.engine.core.Entity;
+import np.engine.gfx.GraphicsEngine;
 import np.engine.maths.V2F;
 
 public class PlayerEntity extends Entity {
 	private boolean flip = false;
-	public PlayerEntity(Engine engine, int X, int Y, int W, int H) {
+	public PlayerEntity(Engine engine, GraphicsEngine gfx,  int X, int Y, int W, int H) {
 		super(engine, false, X, Y, W, H, GetNextID());
+		this.gfx = gfx;
 		isDisplayed = true;
 		isActive = true;
 	}
@@ -20,8 +22,8 @@ public class PlayerEntity extends Entity {
 	@Override
 	public void DrawSelf() {
 		V2F pos = engine.WorldToScreen(position);
-		engine.DrawSprite((flip) ? "player::right" : "player::left",pos.x,pos.y, width, height);
-		engine.DrawString("Mode: "+flip, 0, 48, 16, Color.black);
+		gfx.DrawSprite((flip) ? "player::right" : "player::left",pos.x,pos.y, width, height);
+		gfx.DrawString("Mode: "+flip, 0, 48, 16, Color.black);
 	}
 
 	@Override

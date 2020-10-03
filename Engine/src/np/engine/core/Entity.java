@@ -1,10 +1,12 @@
-package np.engine;
+package np.engine.core;
 
+import np.engine.gfx.GraphicsEngine;
 import np.engine.maths.V2F;
 
 @SuppressWarnings("unused")
 public abstract class Entity {
 	protected Engine engine;
+	protected GraphicsEngine gfx;
 	protected boolean isStatic, isActive, isDisplayed;
 	protected V2F position;
 	public int width;
