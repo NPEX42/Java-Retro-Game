@@ -7,4 +7,8 @@ public class Component {
 		return parentID;
 	}
 	
+	public void SetParentID(int id) {
+		parentID = id;
+	}
+	
 }
