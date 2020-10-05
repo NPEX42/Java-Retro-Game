@@ -1,3 +1,3 @@
 TEST:This Is A Test
-PlayerY:239
-PlayerX:317
+PlayerY:36
+PlayerX:-50

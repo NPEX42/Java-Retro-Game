@@ -1,0 +1,8 @@
+<?eclipse.ant.import?>
+<target name="build-jar"> 
+    <javac debug="true" debuglevel="${debuglevel}" destdir="bin" includeantruntime="false" source="${source}" target="${target}">
+    	<src path="src"/>
+    	<classpath refid="Engine.classpath"/>
+    </javac>
+   	<jar destfile="build/Engine.jar" basedir="bin"/>	
+</target>
