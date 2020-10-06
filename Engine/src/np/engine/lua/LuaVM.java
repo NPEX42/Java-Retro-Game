@@ -2,7 +2,6 @@ package np.engine.lua;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.function.Function;
 
 import org.luaj.vm2.Globals;
 import org.luaj.vm2.LuaValue;
@@ -29,5 +28,13 @@ public class LuaVM {
 		});
 		t.start();
 		return t;
+	}
+	
+	public int GetInt(String scriptName, String varName) {
+		return scripts.get(scriptName).get(varName).toint();
+	}
+	
+	public void RunFunction(String scriptName, String funcName) {
+		scripts.get(scriptName).get(funcName).call();
 	}
 }
