@@ -8,5 +8,6 @@
 	</classpathentry>
 	<classpathentry kind="lib" path="Vendor/jsfml.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
+	<classpathentry kind="lib" path="Vendor/luaj-jse-3.0.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
