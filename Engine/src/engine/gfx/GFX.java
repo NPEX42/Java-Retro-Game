@@ -5,10 +5,11 @@ import java.awt.Color;
 import org.luaj.vm2.LuaValue;
 import org.luaj.vm2.lib.ThreeArgFunction;
 import org.luaj.vm2.lib.TwoArgFunction;
+import org.luaj.vm2.lib.VarArgFunction;
 
 import np.engine.gfx.GraphicsEngine;
 
-public class GFX extends TwoArgFunction{
+public class GFX extends TwoArgFunction {
 	private static GraphicsEngine gfx;
 	
 	public static void SetGfx(GraphicsEngine gfx) { GFX.gfx = gfx; }
@@ -22,19 +23,21 @@ public class GFX extends TwoArgFunction{
 		return library;
 	}
 	
-	private static class DrawFilledRect extends ThreeArgFunction {
+	private static class DrawFilledRect extends VarArgFunction {
 
 		@Override
-		public LuaValue call(LuaValue position, LuaValue size, LuaValue colorRGB) {
-			int X = position.checkint(0);
-			int Y = position.checkint(1);
+		public LuaValue call(LuaValue args) {
 			
-			int W = position.checkint(0);
-			int H = position.checkint(1);
+			System.out.println("[GFX/Trace] Drawing A Rectangle...");
+			int X = args.arg(0).checkint();
+			int Y = args.arg(1).checkint();
 			
-			int R = position.checkint(0);
-			int G = position.checkint(1);
-			int B = position.checkint(2);
+			int W = args.arg(2).checkint();
+			int H = args.arg(3).checkint();
+			
+			int R = args.arg(4).checkint();
+			int G = args.arg(5).checkint();
+			int B = args.arg(6).checkint();
 			
 			Color color = new Color(R, G, B);
 			gfx.DrawFilledRect(X, Y, W, H, color);

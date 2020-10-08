@@ -2,7 +2,6 @@ package np.engine.lua;
 
 import java.util.HashMap;
 import java.util.Map;
-
 import org.luaj.vm2.Globals;
 import org.luaj.vm2.LuaValue;
 import org.luaj.vm2.lib.jse.JsePlatform;
@@ -34,7 +33,9 @@ public class LuaVM {
 		return scripts.get(scriptName).get(varName).toint();
 	}
 	
+	@Deprecated
 	public void RunFunction(String scriptName, String funcName) {
-		scripts.get(scriptName).get(funcName).call();
+		System.out.println(scripts.get(scriptName).typename());
+		scripts.get(scriptName).invokemethod(funcName);
 	}
 }

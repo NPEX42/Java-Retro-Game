@@ -9,6 +9,7 @@ import np.engine.core.EngineImpl;
 import np.engine.core.ObjectSerializer;
 import np.engine.gfx.GraphicsEngine;
 import np.engine.gfx.GraphicsEngineImpl;
+import np.engine.lua.LuaVM;
 import np.engine.maths.V2F;
 import np.game.entities.ConfigFile;
 import np.game.entities.PlayerEntity;
@@ -33,6 +34,8 @@ public class Game {
 	
 	PlayerEntity player;
 	StaticEntity block;
+	
+	LuaVM vm = new LuaVM();
 	public void Start() {
 		if(engine.ConstructWindow(720, 480, "The Adventures Of Kahn")) {
 			
@@ -57,6 +60,8 @@ public class Game {
 			
 			engine.LogInfo("Starting Game...");
 			
+			vm.LoadFile("gfx", "assets/Scripts/gfx_Test.lua");
+			
 			config.SetString("TEST", "This Is A Test");
 			
 			System.out.println(config.GetString("TEST"));
@@ -80,6 +85,8 @@ public class Game {
 		gfx.DrawString("Camera Position: "+engine.getCameraPosition(), 0, 16, 16, Color.BLACK);
 		gfx.DrawString("Mouse Position: "+engine.GetMousePos(),0,32,16, Color.black);
 		engine.SetCameraPosition(player.getPosition().Sub(new V2F(engine.ScreenWidth() / 2, engine.ScreenHeight() / 2)));
+		vm.RunSync("gfx");
+		//vm.RunFunction("gfx", "Update");
 	}
 
 }
