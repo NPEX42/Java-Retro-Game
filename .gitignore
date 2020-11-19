@@ -1,2 +1,5 @@
 # Specify filepatterns you want git to ignore.
 
+/.metadata/
+/Engine/nbproject/private/
+/Game/nbproject/private/

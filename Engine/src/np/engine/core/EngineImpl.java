@@ -1,6 +1,7 @@
 package np.engine.core;
 
 import java.awt.Color;
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -36,6 +37,7 @@ import static np.engine.KeyState.*;
 
 
 public class EngineImpl implements Engine {
+	private ConfigFile config;
 	public RenderWindow window;
 	UpdateCallback OnUpdate;
 	Clock frameClock;
@@ -217,12 +219,12 @@ public class EngineImpl implements Engine {
 
 	@Override
 	public int GetMousePosX() {
-		return Mouse.getPosition().x;
+		return Mouse.getPosition(window).x;
 	}
 
 	@Override
 	public int GetMousePosY() {
-		return Mouse.getPosition().y;
+		return Mouse.getPosition(window).y;
 	}
 
 	@Override
@@ -375,6 +377,68 @@ public class EngineImpl implements Engine {
 	public V2F GetMousePos() {
 		return new V2F(GetMousePosX(), GetMousePosY());
 	}
+
+	@Override
+	public boolean IsKeyDown(String key) {
+		return GetKeyState(Key.valueOf(key)) == KeyState.KEY_DOWN;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public <T> T GetWindow(Class<T> clazz) {
+		return (T) window;
+	}
+
+	@Override
+	public void LoadPersistentStore(String path) {
+		if(new File(path).exists()) {
+			config = new ConfigFile(path);
+		} else {
+			config = new ConfigFile();
+		}
+	}
+
+	@Override
+	public void SavePersistentStore(String path) {
+		config.Save(path);
+	}
+
+	@Override
+	public void SetInt(String key, int value) {
+		config.SetInt(key, value);
+	}
+
+	@Override
+	public void SetFloat(String key, float value) {
+		config.SetFloat(key, value);
+	}
+
+	@Override
+	public void SetString(String key, String value) {
+		config.SetString(key, value);
+	}
+
+	@Override
+	public int GetInt(String key) {
+		return config.GetInt(key);
+	}
+
+	@Override
+	public float GetFloat(String key) {
+		return config.GetFloat(key);
+	}
+
+	@Override
+	public String getString(String key) {
+		return config.GetString(key);
+	}
+
+	@Override
+	public void Close() {
+		window.close();
+	}
+	
+	
 	
 	
 

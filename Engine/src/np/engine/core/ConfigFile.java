@@ -29,6 +29,7 @@ public class ConfigFile {
 	}
 	
 	public boolean Save(String filePath) {
+		if(!IO.fileExists(filePath)) { IO.CreateFile(filePath); }
 		BufferedWriter writer = IO.OpenBufferedWriter(filePath);
 		try {
 			System.out.println("[ConfigFile/Info] Saving Config To '"+filePath+"'");
@@ -95,6 +96,12 @@ public class ConfigFile {
 	}
 	public long GetLong(String name) {
 		return Long.parseLong(GetString(name));
+	}
+	public void SetFloat(String key, float value) {
+		SetString(key, ""+value);
+	}
+	public float GetFloat(String key) {
+		return Float.parseFloat(GetString(key));
 	}
 
 }

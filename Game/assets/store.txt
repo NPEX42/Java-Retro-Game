@@ -1,0 +1,6 @@
+Player.stats.MaxHP:1000
+Player.y:192
+Player.stats.HP:1000
+Player.x:212
+MaxHP:Player.stats.MaxHP
+HP:Player.stats.HP
