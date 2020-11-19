@@ -14,6 +14,7 @@ public interface Engine {
 	
 	public void Start(int targetFrameRate);
 	public void Start(                   );
+	public void Close(                   );
 	
 	//public RenderWindow GetRenderWindow();
 	
@@ -33,6 +34,7 @@ public interface Engine {
 	public int ScreenHeight();
 	
 	public KeyState GetKeyState  (Key key       );
+	public boolean IsKeyDown(String key); 
 	public KeyState GetMouseState(Button button );
 	
 	public int GetMousePosX   ();
@@ -74,5 +76,18 @@ public interface Engine {
 	public V2F getCameraPosition();
 
 	public V2F GetMousePos();
+	
+	public <T> T GetWindow(Class<T> clazz);
+	
+	public void LoadPersistentStore(String path);
+	public void SavePersistentStore(String path);
+	
+	public void SetInt(String key, int value);
+	public void SetFloat(String key, float value);
+	public void SetString(String key, String value);
+	
+	public int GetInt(String key);
+	public float GetFloat(String key);
+	public String getString(String key);
 	
 }

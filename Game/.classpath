@@ -8,5 +8,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="/Engine/Vendor/jsfml.jar"/>
+	<classpathentry kind="lib" path="/home/george/java/git/Java-Retro-Game/Engine/Vendor/luaj-jse-3.0.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

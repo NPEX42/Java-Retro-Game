@@ -11,6 +11,8 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 
+import np.common.exceptions.FileException;
+
 public class IO {
 	public static boolean fileExists(String path) {
 		return new File(path).exists();
@@ -53,5 +55,13 @@ public class IO {
 
 	public static BufferedWriter OpenBufferedWriter(String filePath) {
 		return new BufferedWriter(new OutputStreamWriter(fileOpenForWriting(filePath)));
+	}
+
+	public static void CreateFile(String filePath) {
+		try {
+			new File(filePath).createNewFile();
+		} catch (IOException e) {
+			throw new FileException("Unable To Create File '"+filePath+"'...");
+		}
 	}
 }

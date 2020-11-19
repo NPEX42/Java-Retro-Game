@@ -7,7 +7,7 @@ import org.luaj.vm2.lib.TwoArgFunction;
 
 import np.engine.gfx.GraphicsEngine;
 
-public class LuaGFX {
+public class LuaGFX  {
 	private static GraphicsEngine gfx;
 
 	public static void setGfx(GraphicsEngine gfx) {
